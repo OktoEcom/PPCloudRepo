@@ -6,16 +6,8 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    centos:
-      imageName: "centos-7.7"
-    ubuntu:
-      imageName: "ubuntu-latest"
-  maxParallel: 2
-
 pool:
-  vmImage: $(imageName)
+  vmImage: "centos-7.7"
 
 phpVersion: 7.2
 
