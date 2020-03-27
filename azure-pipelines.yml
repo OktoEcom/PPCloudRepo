@@ -6,11 +6,29 @@
 trigger:
 - master
 
+strategy:
+  matrix:
+    linux:
+      imageName: "centos-7.7"
+    linux:
+      imageName: "ubuntu-latest"
+  maxParallel: 2
+
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: $(imageName)
 
 variables:
   phpVersion: 7.2
+
+strategy:
+  matrix:
+    php73:
+      php_version: "7.3"
+    php72:
+      php_version: "7.2"
+  maxParallel: 2
+
+phpVersion: $(php_version)
 
 steps:
 - script: |
@@ -21,6 +39,12 @@ steps:
     sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
     php -version
   displayName: 'Use PHP version $(phpVersion)'
+
+- script: curl -sS https://getcomposer.org/installer | php
+  displayName: 'download composer installer'
+
+- script: sudo mv composer.phar /usr/local/bin/composer
+  displayName: 'download composer installer'
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
