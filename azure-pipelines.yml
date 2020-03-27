@@ -8,17 +8,15 @@ trigger:
 
 strategy:
   matrix:
-    linux:
+    centos:
       imageName: "centos-7.7"
-    linux:
+    ubuntu:
       imageName: "ubuntu-latest"
   maxParallel: 2
 
 pool:
   vmImage: $(imageName)
 
-variables:
-  phpVersion: 7.2
 
 strategy:
   matrix:
