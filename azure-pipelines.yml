@@ -28,5 +28,5 @@ steps:
 - script: sudo mv composer.phar /usr/local/bin/composer
   displayName: 'download composer installer'
 
-- script: composer install --no-interaction --prefer-dist
-  displayName: 'composer install'
+#- script: composer install --no-interaction --prefer-dist
+#  displayName: 'composer install'
